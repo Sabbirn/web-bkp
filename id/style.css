@@ -1,0 +1,141 @@
+body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+        .id-card {
+            width: 300px;
+            border: 1px solid #000;
+            padding: 20px;
+            background-color: #fff;
+            margin: 0 auto;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .id-card img.logo {
+            width: 90px;
+            height: auto;
+        }
+        .id-card h1 {
+            font-size: 20px;
+            margin: 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .id-card h1.curved {
+            display: inline-block;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 0;
+            padding-top: 10px;
+        }
+        .id-card h1.curved::after {
+            content: "";
+            display: block;
+            border-top: 1px solid #000;
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 5px;
+        }
+        .id-card img.photo {
+            width: 100px;
+            height: 120px;
+            border: 1px solid #000;
+            margin: 10px 0;
+        }
+        .id-card .id-label,
+        .id-card .card-label {
+            position: absolute;
+            top: 200px;
+            font-size: 25px;
+            font-weight: bold;
+            color: red;
+        }
+        .id-card .id-label {
+            left: 50px;
+        }
+        .id-card .card-label {
+            right: 30px;
+        }
+        .id-card .details {
+            text-align: left;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .id-card .details div {
+            display: block;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .id-card .validity {
+            position: absolute;
+            bottom: 15px;
+            left: 20px;
+            color: #e60000;
+            font-size: 14px;
+        }
+        .id-card .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 20px;
+            font-weight: bold;
+            position: absolute;
+            bottom: 40px;
+            right: 20px;
+            color: #000;
+        }
+        .id-card .signature-line {
+            border-top: 1px solid #000;
+            position: absolute;
+            bottom: 35px;
+            right: 20px;
+            max-width: 100px;
+            min-width: 80px;
+            width: fit-content;
+        }
+        .id-card .principal {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        
+        [contenteditable]:focus {
+            outline: 2px solid black; 
+        }
+        
+        #download-btn {
+    display: block;
+    margin: 20px auto 0; 
+    padding: 10px 20px;
+    background-color: transparent; 
+    border: 2px solid #000000; 
+    border-radius: 20px; 
+    font-size: 16px;
+    color: #ff0000; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+#download-btn:hover {
+    background-color: rgba(128, 128, 128, 0.2); 
+    color: #ff6666; 
+}
+.footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #000000;
+            font-size: 14px;
+            animation: fadeIn 3s ease-in-out;
+        }
+        .footer a {
+            color: #ff6666;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }

