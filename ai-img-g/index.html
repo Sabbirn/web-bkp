@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Generator</title>
+    <style>
+      /* Customizable Styles */
+      :root {
+        --primary-color: #007bff; /* Change primary color here */
+        --button-radius: 8px; /* Change button radius here */
+        --button-padding: 10px 20px; /* Change button padding here */
+      }
+
+      /* General Styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+
+      h1 {
+        color: var(--primary-color);
+      }
+
+      textarea,
+      select,
+      button {
+        margin: 5px;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+      }
+
+      textarea {
+        width: calc(100% - 20px);
+        max-width: 100%;
+        height: 100px;
+        resize: vertical;
+      }
+
+      select {
+        width: 50%;
+        max-width: 200px;
+      }
+
+      button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: var(--button-radius);
+        padding: var(--button-padding);
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #0056b3; /* Darken primary color on hover */
+      }
+
+      #image {
+        max-width: 100%;
+        display: none;
+      }
+
+      #loading {
+        display: none;
+      }
+
+      @media (min-width: 600px) {
+        .container {
+          max-width: 500px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Image Generator</h1>
+      <textarea
+        id="imageDescription"
+        placeholder="Enter image description..."
+      ></textarea
+      ><br /><br />
+      <label for="aspectRatio">Image Aspect Ratio:</label>
+      <select id="aspectRatio">
+        <option value="16:9">16:9</option>
+        <option value="4:3">4:3</option>
+        <option value="1:1">1:1 (Square)</option></select
+      ><br /><br />
+      <label for="imageStyle">Image Style:</label>
+      <select id="imageStyle">
+        <option value="default">Default</option>
+        <option value="animation">Animation</option>
+        <option value="cartoon">Cartoon</option>
+        <option value="realistic">Realistic</option>
+        <option value="more">More...</option></select
+      ><br /><br />
+      <button onclick="generateImage()">Generate Image</button><br /><br />
+      <div id="loading">Generating image...</div>
+      <br />
+      <img id="image" src="" alt="Generated Image" />
+      <br /><br />
+      <button id="downloadBtn" style="display: none" onclick="downloadImage()">
+        Download Image
+      </button>
+      <br />
+      <p>&copy; Md.Sabbir Sheikh</p>
+    </div>
+
+    <script>
+      async function callImageGenerationAPI(
+        description,
+        aspectRatio,
+        imageStyle
+      ) {
+        const apiUrl =
+          "https://backend.buildpicoapps.com/aero/run/image-generation-api?pk=v1-Z0FBQUFBQm1LT2pEUVFhaWc1dm9wa013aFZNTVBjVHdpZmdBSnk1UDM1d2hFMHJrNFc0TFVtaXd4Q2l3Sl9Va0EydzU5WE9TaU5peFRPUXNaQkoxb0RnanVMZkVyakpfbVE9PQ==";
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            prompt: description,
+            aspectRatio: aspectRatio,
+            style: imageStyle,
+          }),
+        });
+
+        return response.json();
+      }
+
+      async function handleImageGeneration(
+        description,
+        aspectRatio,
+        imageStyle
+      ) {
+        try {
+          document.getElementById("loading").style.display = "block";
+          const imageData = await callImageGenerationAPI(
+            description,
+            aspectRatio,
+            imageStyle
+          );
+
+          if (imageData.status === "success") {
+            displayGeneratedImage(imageData.imageUrl);
+            document.getElementById("downloadBtn").style.display = "inline";
+          } else {
+            console.error("Image generation error:", imageData.error);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        } finally {
+          document.getElementById("loading").style.display = "none";
+        }
+      }
+
+      function displayGeneratedImage(imageUrl) {
+        document.getElementById("image").src = imageUrl;
+        document.getElementById("image").style.display = "block";
+      }
+
+      function generateImage() {
+        const description = document.getElementById("imageDescription").value;
+        const aspectRatio = document.getElementById("aspectRatio").value;
+        const imageStyle = document.getElementById("imageStyle").value;
+        handleImageGeneration(description, aspectRatio, imageStyle);
+      }
+
+      function downloadImage() {
+        const img = document.getElementById("image");
+        const url = img.src;
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "generated_image.png";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    </script>
+  </body>
+</html>
