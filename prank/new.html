@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SMS Bomber</title>
+    <title>SMS</title>
     <style>
       body {
         margin: 0;
@@ -101,7 +101,7 @@
     </div>
 
     <!-- Updated audio source -->
-    <audio id="prank-audio" src="fuck.mp3" loop></audio>
+    <audio id="prank-audio" src="https://samplelib.com/lib/preview/mp3/sample-3s.mp3" loop></audio>
 
     <script>
       const button = document.getElementById("prank-button");
@@ -131,6 +131,38 @@
         // Enter full-screen mode
         enterFullScreen();
       });
+      // new added
+      // new added
+
+
+      // Select the audio player and button elements
+      const audio = document.getElementById("prank-audio");
+      const button = document.getElementById("prank-button");
+
+      // Event listener to play the audio when the button is clicked
+      button.addEventListener("click", () => {
+        audio.play();
+        alert(
+          "Please ensure your device sound is set to full volume for the best experience."
+        );
+      });
+
+      // Function to ensure the audio player volume is set to 100%
+      function ensureMaxVolume() {
+        if (audio.volume < 1) {
+          audio.volume = 1; // Set volume to 100%
+          console.log("Volume increased to 100%.");
+        } else {
+          console.log("Volume is already at 100%.");
+        }
+      }
+
+      // Check and increase volume every 30 seconds
+      setInterval(ensureMaxVolume, 30000);
+
+      
+      // new added
+      // new added
     </script>
   </body>
 </html>
